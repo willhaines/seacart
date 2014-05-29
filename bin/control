@@ -1,0 +1,16 @@
+#!/bin/bash
+
+$PIDFILE=${OPENSHIFT_TMP_DIR}/seafile.pid
+
+case $! in
+  start )
+    while true ; do 
+      nc -l -p 1500 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"'
+    done &
+    echo $! > $PIDFILE
+  ;;
+  stop )
+    xargs -a $PIDFILE
+    rm $PIDFILE
+  ;;
+esac

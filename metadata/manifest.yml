@@ -1,0 +1,23 @@
+Name: SEAFILE
+Cartridge-Short-Name: SEAFILE
+Cartridge-Version: '0.1'
+Compatible-Versions:
+  - '0.1'
+Cartridge-Vendor: whaines
+Display-Name: SEAFILE
+Description: "private dropbox alternative"
+Version: '0.1'
+versions:
+  - '0.1'
+Categories:
+  - web_framework
+Provides:
+  - seafile
+Endpoints:
+  - Private-IP-Name:   PRIV_IP
+    Private-Port-Name: PRIV_PORT
+    Private-Port:      8080
+    Public-Port-Name:  PUB_PORT
+    Mappings:
+      - Frontend: "/"
+      - Backend:  "/"
