@@ -1,0 +1,8 @@
+#!/bin/bash
+
+LOGFILE="${OPENSHIFT_TMP_DIR}/install.log"
+
+date > $LOGFILE
+echo "Ran intial install" >> $LOGFILE
+
+exit 0
