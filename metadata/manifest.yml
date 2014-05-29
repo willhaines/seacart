@@ -1,11 +1,11 @@
 Name: seafile
+Cartridge-Short-Name: SEAFILE
+Display-Name: Seafile 0.1
 Source-Url: https://github.com/willhaines/seacart.git
-Cartridge-Short-Name: seafile
 Cartridge-Version: '0.1'
 Compatible-Versions:
   - '0.1'
 Cartridge-Vendor: whaines
-Display-Name: SEAFILE
 Description: "private dropbox alternative"
 Version: '0.1'
 versions:
