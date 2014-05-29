@@ -1,19 +1,32 @@
 #!/bin/bash
 
-$PIDFILE=${OPENSHIFT_TMP_DIR}seafile.pid
-$LOGFILE="${OPENSHIFT_SEAFILE_LOG_DIR}/seafile.log"
+PIDFILE="${OPENSHIFT_TMP_DIR}/seafile.pid"
+LOGFILE="${OPENSHIFT_SEAFILE_LOG_DIR}/seafile.log"
 
-echo "Running control" > $LOGFILE
+date > $LOGFILE
+echo "Running control" >> $LOGFILE
 
-case $! in
-  start )
+case $1 in
+  start)
+    echo "Running start" >> $LOGFILE
     while true ; do 
       nc -l -p 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"'
     done &
     echo $! > $PIDFILE
+    echo "Ran start" >> $LOGFILE
   ;;
-  stop )
-    xargs -a $PIDFILE
+  stop)
+    echo "Running stop" >> $LOGFILE
+    if xargs -a $PIDFILE kill; then
+      echo -n "Killed " >> $LOGFILE
+      cat $PIDFILE >> $LOGFILE
+    else
+      echo "Kill didn't work." >> $LOGFILE
+      echo -n "Trying kill -9 " >> $LOGFILE
+      cat $PIDFILE >> $LOGFILE
+      xargs -a $PIDFILE kill -9
+    fi
     rm $PIDFILE
+    echo "Ran stop" >> $LOGFILE
   ;;
 esac
