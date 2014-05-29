@@ -9,7 +9,8 @@ echo "Running control" >> $LOGFILE
 case $1 in
   start)
     echo "Running start" >> $LOGFILE
-    ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"' &
+    #ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"' &
+    ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'mysql -h $OPENSHIFT_MYSDB_HOST -u $OPENSHIFT_MYSQL_DB_USERNAME -p${OPENSHIFT_MYSQL_DB_PASSWORD} -D seafile3 -e "select * from users"' &
     echo $! > $PIDFILE
     echo "Ran start" >> $LOGFILE
   ;;
