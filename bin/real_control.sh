@@ -10,7 +10,7 @@ case $1 in
   start)
     echo "Running start" >> $LOGFILE
     while true ; do 
-      nc -l -p 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"'
+      echo -e "HTTP/1.1 200 OK\n\n $(date)" | nc -l -p 8080 > /dev/null
     done &
     echo $! > $PIDFILE
     echo "Ran start" >> $LOGFILE
