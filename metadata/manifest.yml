@@ -14,8 +14,6 @@ Categories:
   - web_framework
 Provides:
   - seafile
-Requires:
-  - mysql
 Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
