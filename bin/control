@@ -10,8 +10,8 @@ case $1 in
   start)
     echo "Running start" >> $LOGFILE
     #ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n $(date)"' &
-    ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n" && mysql -h $OPENSHIFT_MYSQL_DB_HOST -u $OPENSHIFT_MYSQL_DB_USERNAME -p${OPENSHIFT_MYSQL_DB_PASSWORD} -D seafile3 -e "select * from users"' &
-    echo $! > $PIDFILE
+    #ncat -k -l ${OPENSHIFT_SEAFILE_PRIV_IP} 8080 -c 'echo -e "HTTP/1.1 200 OK\n\n" && mysql -h $OPENSHIFT_MYSQL_DB_HOST -u $OPENSHIFT_MYSQL_DB_USERNAME -p${OPENSHIFT_MYSQL_DB_PASSWORD} -D seafile3 -e "select * from users"' &
+    ${OPENSHIFT_REPO_DIR}/server.sh > $PIDFILE
     echo "Ran start" >> $LOGFILE
   ;;
   stop)
