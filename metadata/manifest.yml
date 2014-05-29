@@ -1,6 +1,6 @@
-Name: SEAFILE
+Name: seafile
 Source-Url: https://github.com/willhaines/seacart.git
-Cartridge-Short-Name: SEAFILE
+Cartridge-Short-Name: seafile
 Cartridge-Version: '0.1'
 Compatible-Versions:
   - '0.1'
