@@ -24,7 +24,7 @@ function stop() {
   echo "Ran stop" >> $LOGFILE
 }
 
-date > $LOGFILE
+date >> $LOGFILE
 echo "Running control" >> $LOGFILE
 
 case $1 in

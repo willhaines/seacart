@@ -2,7 +2,7 @@
 
 LOGFILE="${OPENSHIFT_TMP_DIR}/install.log"
 
-date > $LOGFILE
+date >> $LOGFILE
 
 echo "Ran intial install" >> $LOGFILE
 
