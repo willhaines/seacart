@@ -31,3 +31,10 @@ Endpoints:
     Mappings:
       - Frontend: "/"
       - Backend:  "/"
+  - Private-IP-Name:   SEC_IP
+    Private-Port-Name: SEC_PRIV_PORT
+    Private-Port:      8888
+    Public-Port-Name:  SEC_PUB_PORT
+    Mappings:
+      - Frontend: "/"
+      - Backend:  "/"
