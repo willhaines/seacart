@@ -1,10 +1,10 @@
 #!/bin/bash
 
 LOGFILE="${OPENSHIFT_TMP_DIR}/seafile.log"
-LOG=">> $LOGFILE 2>&1"
+LOG=">> $LOGFILE 2>>&1"
 
 function start() {
-  echo "Running start" >> $LOGFILE
+  echo "Running start" $LOG
   if [ ! -f ${OPENSHIFT_DATA_DIR}/installed ]; then
     mkdir ${OPENSHIFT_REPO_DIR}/conf $LOG
     rm -rf ${OPENSHIFT_DATA_DIR}/seafile $LOG
@@ -18,7 +18,7 @@ function start() {
   $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh start $LOG
   $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh start 8080 $LOG
   
-  echo "Ran start" >> $LOGFILE
+  echo "Ran start" $LOG
 }
 
 function stop() {
