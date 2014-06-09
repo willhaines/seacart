@@ -35,6 +35,3 @@ Endpoints:
     Private-Port-Name: SEC_PRIV_PORT
     Private-Port:      8888
     Public-Port-Name:  SEC_PUB_PORT
-    Mappings:
-      - Frontend: "/"
-      - Backend:  "/"
