@@ -35,3 +35,6 @@ Endpoints:
     Private-Port-Name: SEC_PRIV_PORT
     Private-Port:      8888
     Public-Port-Name:  SEC_PUB_PORT
+Scaling:
+  Min: 1
+  Max: -1
