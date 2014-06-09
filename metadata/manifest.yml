@@ -31,6 +31,8 @@ Endpoints:
     Mappings:
       - Frontend: "/"
         Backend: "/"
+      - Frontend: "/openshift-ports.yml"
+        Backend: "/tmp/foo"
   - Private-IP-Name:   CCNET_IP
     Private-Port-Name: CCNET_PORT
     Private-Port:      10001
