@@ -29,6 +29,8 @@ Endpoints:
     Private-Port:      8080
     Public-Port-Name:  PUB_PORT
     Mappings:
+      - Frontend: "/"
+      - Backend: "/"
       - Frontend: "/openshift-ports.yml"
         Backend: "/$OPENSHIFT_DATA_DIR/openshift-ports.yml"
         Options: { "file": 1}
