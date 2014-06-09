@@ -30,7 +30,7 @@ Endpoints:
     Public-Port-Name:  PUB_PORT
     Mappings:
       - Frontend: "/"
-      - Backend: "/"
+        Backend: "/"
   - Private-IP-Name:   CCNET_IP
     Private-Port-Name: CCNET_PORT
     Private-Port:      10001
