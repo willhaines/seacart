@@ -15,6 +15,9 @@ function start() {
     python $OPENSHIFT_REPO_DIR/seafile-server-3.0.3/setup-seafile-mysql.py >> $LOGFILE 2>&1
     sed "/SERVICE_URL/s|^\(.* = \).*$|\1http://${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_DIY_PORT}|" \
       $OPENSHIFT_REPO_DIR/ccnet/ccnet.conf >> $LOGFILE 2>&1
+
+    echo "foo: bar" >> $OPENSHIFT_DATA_DIR/openshift-ports.yml
+
     touch ${OPENSHIFT_DATA_DIR}/installed >> $LOGFILE 2>&1
   fi
   
