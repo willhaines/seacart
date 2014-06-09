@@ -31,10 +31,18 @@ Endpoints:
     Mappings:
       - Frontend: "/"
       - Backend:  "/"
-  - Private-IP-Name:   SEC_IP
-    Private-Port-Name: SEC_PRIV_PORT
-    Private-Port:      8888
-    Public-Port-Name:  SEC_PUB_PORT
+  - Private-IP-Name:   CCNET_IP
+    Private-Port-Name: CCNET_PORT
+    Private-Port:      10001
+    Public-Port-Name:  CCNET_PUB_PORT
+  - Private-IP-Name:   SEA_CONF_IP
+    Private-Port-Name: SEA_CONF_PORT
+    Private-Port:      12001
+    Public-Port-Name:  SEA_CONF_PUB_PORT
+  - Private-IP-Name:   SEA_HTTP_IP
+    Private-Port-Name: SEA_HTTP_PORT
+    Private-Port:      8082
+    Public-Port-Name:  SEC_HTTP_PUB_PORT
 Scaling:
   Min: 1
   Max: -1

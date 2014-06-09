@@ -1,26 +1,29 @@
 #!/bin/bash
 
-PIDFILE="${OPENSHIFT_TMP_DIR}/seafile.pid"
 LOGFILE="${OPENSHIFT_TMP_DIR}/seafile.log"
 
 function start() {
   echo "Running start" >> $LOGFILE
-  ${OPENSHIFT_REPO_DIR}/server.sh > $PIDFILE
+  if [ ! -f ${OPENSHIFT_DATA_DIR}/installed ]; then
+    mkdir ${OPENSHIFT_REPO_DIR}/conf
+    rm -rf ${OPENSHIFT_DATA_DIR}/seafile
+    export PYTHON="python"
+    python $OPENSHIFT_REPO_DIR/seafile-server-3.0.3/setup-seafile-mysql.py
+    sed "/SERVICE_URL/s|^\(.* = \).*$|\1http://${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_DIY_PORT}|" \
+      $OPENSHIFT_REPO_DIR/ccnet/ccnet.conf
+    touch ${OPENSHIFT_DATA_DIR}/installed
+  fi
+  
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh start
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh start 8080
+  
   echo "Ran start" >> $LOGFILE
 }
 
 function stop() {
   echo "Running stop" >> $LOGFILE
-  if xargs -a $PIDFILE kill; then
-    echo -n "Killed " >> $LOGFILE
-    cat $PIDFILE >> $LOGFILE
-  else
-    echo "Kill didn't work." >> $LOGFILE
-    echo -n "Trying kill -9 " >> $LOGFILE
-    cat $PIDFILE >> $LOGFILE
-    xargs -a $PIDFILE kill -9
-  fi
-  rm $PIDFILE
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh stop
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh stop
   echo "Ran stop" >> $LOGFILE
 }
 
