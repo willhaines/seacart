@@ -7,9 +7,10 @@ function start() {
   if [ ! -f ${OPENSHIFT_DATA_DIR}/installed ]; then
     #mkdir ${OPENSHIFT_REPO_DIR}/conf >> $LOGFILE 2>&1
     #rm -rf ${OPENSHIFT_DATA_DIR}/seafile >> $LOGFILE 2>&1
-    mysql -h $OPENSHIFT_MYSQL_DB_HOST -u $OPENSHIFT_MYSQL_DB_USERNAME \
-          -p$OPENSHIFT_MYSQL_DB_PASSWORD \
-          -e "create database ccnet; create database seafile; create database seahub;"
+    mysql -h $OPENSHIFT_MYSQL_DB_HOST -P $OPENSHIFT_MYSQL_DB_PORT \
+          -u $OPENSHIFT_MYSQL_DB_USERNAME -p$OPENSHIFT_MYSQL_DB_PASSWORD \
+          -e "create database ccnet; create database seafile; create database seahub;" \
+      >> $LOGFILE 2>&1
     export PYTHON="python"
     python $OPENSHIFT_REPO_DIR/seafile-server-3.0.3/setup-seafile-mysql.py >> $LOGFILE 2>&1
     sed "/SERVICE_URL/s|^\(.* = \).*$|\1http://${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_DIY_PORT}|" \
