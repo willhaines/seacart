@@ -1,29 +1,30 @@
 #!/bin/bash
 
 LOGFILE="${OPENSHIFT_TMP_DIR}/seafile.log"
+LOG=">> $LOGFILE 2>&1"
 
 function start() {
   echo "Running start" >> $LOGFILE
   if [ ! -f ${OPENSHIFT_DATA_DIR}/installed ]; then
-    mkdir ${OPENSHIFT_REPO_DIR}/conf
-    rm -rf ${OPENSHIFT_DATA_DIR}/seafile
+    mkdir ${OPENSHIFT_REPO_DIR}/conf $LOG
+    rm -rf ${OPENSHIFT_DATA_DIR}/seafile $LOG
     export PYTHON="python"
-    python $OPENSHIFT_REPO_DIR/seafile-server-3.0.3/setup-seafile-mysql.py
+    python $OPENSHIFT_REPO_DIR/seafile-server-3.0.3/setup-seafile-mysql.py $LOG
     sed "/SERVICE_URL/s|^\(.* = \).*$|\1http://${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_DIY_PORT}|" \
-      $OPENSHIFT_REPO_DIR/ccnet/ccnet.conf
-    touch ${OPENSHIFT_DATA_DIR}/installed
+      $OPENSHIFT_REPO_DIR/ccnet/ccnet.conf $LOG
+    touch ${OPENSHIFT_DATA_DIR}/installed $LOG
   fi
   
-  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh start
-  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh start 8080
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh start $LOG
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh start 8080 $LOG
   
   echo "Ran start" >> $LOGFILE
 }
 
 function stop() {
   echo "Running stop" >> $LOGFILE
-  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh stop
-  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh stop
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seafile.sh stop $LOG
+  $OPENSHIFT_REPO_DIR/seafile-server-latest/seahub.sh stop $LOG
   echo "Ran stop" >> $LOGFILE
 }
 
