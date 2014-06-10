@@ -26,10 +26,11 @@ Endpoints:
     Mappings:
       - Frontend: "/"
         Backend: "/"
+        Options: { "target_update": false }
 
       - Frontend: "/openshift-ports.yml"
         Backend: "/tmp/foo"
-        Options: { "file": 1 }
+        Options: { "file": true }
 
   - Private-IP-Name:   CCNET_IP
     Private-Port-Name: CCNET_PORT
