@@ -30,7 +30,7 @@ Endpoints:
 
       - Frontend: "/openshift-ports.yml"
         Backend: "/tmp/foo"
-        Options: { "file": true }
+        Options: { "target_update": false }
 
   - Private-IP-Name:   CCNET_IP
     Private-Port-Name: CCNET_PORT
