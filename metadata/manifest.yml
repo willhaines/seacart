@@ -24,8 +24,12 @@ Endpoints:
     Private-Port:      8080
     Public-Port-Name:  PUB_PORT
     Mappings:
+      - Frontend: "/"
+        Backend: "/"
+
       - Frontend: "/openshift-ports.yml"
         Backend: "/tmp/foo"
+        Options: { "file": 1 }
 
   - Private-IP-Name:   CCNET_IP
     Private-Port-Name: CCNET_PORT
